@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<!-- Created by Professor Wergeles for CS4830 at the University of Missouri -->
+<!-- References: 
+		1. https://www.w3schools.com/angular/angular_directives.asp
+-->
+<html ng-app="space">
+	<head>
+		<meta charset="utf-8">
+		<title>Angular Elements</title>
+        <style>
+            .planet {
+                text-align: center;
+                display: inline-block;
+                margin: 30px 10px;
+            }
+            .planet > div {
+                border-radius: 100%;
+                margin: 0 auto 10px;
+            }
+            .planet > span {
+                font-family: monospace;
+                font-size: 1.6em;
+            }
+        </style>
+		<script src="angular.min.js"></script>
+		<script>
+			angular.module("space", [])
+				.controller("spaceController", function($scope){
+
+				}).directive("planet", function(){
+					return {
+						restrict: "E",
+						replace:  true,
+						template: "<div class = 'planet'>"+
+									"<div></div>"+
+									"<span>{{name}}</span>"+
+								  "</div>",
+						link: function(scope, elem, attrs){//dynamically change DOM
+							scope.name = attrs.name;
+
+							var dimension = (attrs.radius / 69931 * 1000);
+
+							elem.find("div").css("background-color", attrs.color);
+							elem.find("div").css("width", dimension + "px");
+							elem.find("div").css("height", dimension + "px");
+						}
+					};
+				});
+		</script>
+	</head>
+	<body ng-controller="spaceController">
+		<planet data-name="Earth" data-color="aquamarine" data-radius="6371"></planet>
+		<planet data-name="Mars" data-color="firebrick" data-radius="3389.5"></planet>
+	</body>
+</html>

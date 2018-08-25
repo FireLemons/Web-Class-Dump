@@ -1,0 +1,72 @@
+/*Disable spinners on number fields*/
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance:textfield;
+}
+
+
+.clickable{
+	cursor: pointer;
+}
+
+.flex{
+	display: flex;
+}
+
+.modal-body{
+	margin-bottom: 2em;
+}
+
+.padded{
+	padding: .5em 2.5em;
+}
+
+.panel-r{
+    border-radius: 4px 0px 0px 4px;
+}
+
+.panel-l{	
+    border-radius: 0px 4px 4px 0px;
+}
+
+.spacedFlex{
+	justify-content: space-between;
+}
+
+.studentBookList tr td:nth-child(8), .studentBookList tr td:nth-child(9){
+	width: 1px;
+}
+
+.studentInfo .btn-danger{
+	margin-bottom: 1em;
+}
+
+.studentInfo .dropdown-toggle{
+	width: 100%;
+}
+
+#title{
+	margin-bottom: .5em;
+}
+
+#newStudent button[type=submit]{
+	background-color: #eee;
+}
+
+#newStudent .panel-body .flex, #newBook .modal-body .flex{
+    justify-content: space-around;
+	margin-bottom: 1em;
+}
+
+#newStudent #phone .flex{
+	margin-bottom: 0;
+}
+
+#phone input[type=number]:nth-child(1){
+	border-radius: 0;
+}

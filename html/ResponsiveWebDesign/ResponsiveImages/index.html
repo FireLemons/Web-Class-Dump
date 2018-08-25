@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<!-- Created by Professor Wergeles for CS4830 at the University of Missouri -->
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Responsive Images</title>
+        <style>
+			html, body{
+				height: 100%;
+			}
+
+			body{
+				background-image: url(canyon-small.jpg);
+				background-repeat: no-repeat;
+				background-size: cover;
+			}
+
+			#frameSize{
+				color: white;
+				font-size: 18pt;
+			}
+
+			@media(min-width: 500px){
+				body{
+					background-image: url(canyon-medium.jpg); 
+				}
+			}
+
+			@media(min-width: 800px){
+				body{
+					background-image: url(canyon-large.jpg); 
+				}
+			}
+
+        </style>
+        <script>
+        	function calcFrameSize(){
+    			document.getElementById("frameSize").innerHTML = "Width: "
+                    + window.innerWidth
+                    + "<br>Height: "
+                    + window.innerHeight;
+        	}
+        </script>
+	</head>
+	<body onload="calcFrameSize()" onresize="calcFrameSize()">
+		<span id="frameSize"></span>
+	</body>
+</html>

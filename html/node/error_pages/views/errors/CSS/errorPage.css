@@ -1,0 +1,24 @@
+body{
+	color: white;
+	font-family: Arial;
+	text-align: center;
+}
+
+body.clientError{
+	background: url(../Images/Dazed.png) no-repeat;
+	background-size: 100% 100%;
+}
+
+body.serverError{
+	background: url(../Images/OnFire.png) no-repeat;
+	background-size: 100% 100%;
+}
+
+h1{
+	font-size: 130pt;
+	margin: 0.5em 0 0 0;
+}
+
+html{
+	height: 100%;
+}

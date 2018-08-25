@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<!-- Created by Professor Wergeles for CS4830 at the University of Missouri -->
+<html>
+    <head>
+        <title>Scroll Parallax</title>
+        <style>
+            body {
+                margin: 0;
+                height: 1000px;
+            }
+
+			.parallax {
+				margin-top: 100px;
+				height: 350px;
+				overflow: hidden;
+			}        
+        </style>
+        <script>
+			window.onscroll = function(){
+				var position = window.scrollY * 0.5; //can't move velocity faser than page scroll
+				var img = document.querySelector(".parallax > img");
+
+				img.style.transform = "translateY(" + position + "px)";
+
+				console.log(position);
+			}; 
+        </script>
+    </head>
+    <body>
+        <div class="parallax">
+            <img src="Carina%20Nebula.jpg">
+        </div>
+    </body>
+</html>

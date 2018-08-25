@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<!-- Created by Professor Wergeles for CS4830 at the University of Missouri -->
+<html>
+    <head>
+        <title>Scroll Effect</title>
+        <style>
+            body {
+                margin: 0;
+                height: 1000px;
+            }
+       
+			#loadbar{
+				background-color: coral;
+				height: 4em;
+				position: fixed;
+			} 
+        </style>
+        <script>
+            window.onscroll = function(e){
+				//console.dir(window.scrollY);
+
+				var position = window.scrollY / (1000 - window.innerHeight) * 100;
+
+				document.getElementById("loadbar").style.width = position + "%";
+			}
+        </script>
+    </head>
+    <body>
+        <div id="loadbar"></div>
+    </body>
+</html>

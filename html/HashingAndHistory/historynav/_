@@ -1,0 +1,105 @@
+<?php
+
+	header("Content-type:text/html");
+	$URI = empty($_SERVER['REQUEST_URI']) ? "" : $_SERVER['REQUEST_URI'];
+	print_r = explode("/", $URI);
+
+?>
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Home</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/cosmo/bootstrap.min.css" rel="stylesheet" integrity="sha384-h21C2fcDk/eFsW9sC9h0dhokq5pDinLNklTKoxIZRUn3+hvmgQSffLLQ4G4l2eEr" crossorigin="anonymous">
+
+		<style>
+			@media(min-width:768px){
+				.container{
+					max-width:730px;
+				}
+			}
+
+			.header{
+				margin-top:30px;
+				border-bottom: 1px solid #EEE;
+			}
+			.header h2{
+				margin-top:0;
+				line-height:40px;
+			}
+			#stage{
+				padding:15px;
+			}
+		</style>
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+		<!-- jQuery ScrollTo Plugin -->
+		<script src="//balupton.github.io/jquery-scrollto/lib/jquery-scrollto.js"></script>
+
+		<!-- History.js -->
+		<script src="//browserstate.github.io/history.js/scripts/bundled/html4+html5/jquery.history.js"></script>
+
+		<script>
+			function stageContent(content){
+				$("#stage").html(content);
+			}
+
+			function evaluatePath(path){
+				var request = path.split("/").pop();
+				$("#nav").children().removeAttr("class");
+				if(request == "about"){
+					$.get("ajaxResources/about.html", stageContent);
+					$("title").html("About");
+					$("#navAbout").addClass("active");
+				} else if(request == "contact") {	
+					$.get("ajaxResources/contact.html", stageContent);
+					$("title").html("Contact");
+					$("#navContact").addClass("active");
+				} else {
+					$.get("ajaxResources/home.html", stageContent);
+					$("title").html("Home");
+					$("#navHome").addClass("active");
+				}
+			}
+
+			$(function(){
+				evaluatePath(location.pathname);
+				
+				$("nav[role=navigation] a").click(function(e){
+					e.preventDefault();
+
+					var request = $(this).attr("href");
+					History.pushState(null/*data*/, null/*title*/, request/*url*/);
+					evaluatePath(request);
+				});
+
+				//back action listener
+
+				$(window).on("popstate", function(){
+					evaluatePath(location.pathname);
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<div class="container">
+			<div class="header clearfix">
+				<nav role="navigation">
+					<ul id="nav" class="nav nav-pills pull-right">
+						<li id="navHome"><a href="./">Home</a></li>
+						<li id="navAbout"><a href="./about">About</a></li>
+						<li id="navContact"><a href="./contact">Contact</a></li>
+					</ul>
+				</nav>
+				<h2 class="text-muted">History Navigation</h2>
+				<p>This page relies on javascript to work properly. You can enable javascript by following the instructions <a href="https://www.enable-javascript.com/">here</a>.</p>
+				<div id="stage">
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

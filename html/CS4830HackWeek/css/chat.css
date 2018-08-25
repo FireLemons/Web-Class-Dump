@@ -1,0 +1,91 @@
+#chat{
+	border-left: 2px solid #999;
+}
+
+#main{
+	height: 100vh;
+	padding: 0;
+}
+
+#messages{
+	flex-grow: 1;
+    flex-direction: column;
+	height: auto!important;
+	overflow-y: auto;
+}
+
+#messages button{
+	font-size: 12pt;
+	padding: 0 .4em;
+	margin: .5em 0;
+}
+
+#messages p{
+	color: white;
+	margin: .5em;
+}
+
+#sendMessage input{
+	background-color: #666666;
+	border-color: black;
+	caret-color: white;
+	color: white;
+}
+
+#spacer{
+	flex-grow: 1;
+}
+
+#userList h3{
+	color: white;
+}
+
+#userList h3:not(:first-child){
+	cursor: pointer;
+	background-color: #333;
+	padding: .5em;
+	margin-bottom: 0;
+}
+
+#userList h3:not(:first-child):hover{
+	background-color: #444;
+}
+
+#userList p{
+	color: #aaa;
+}
+
+#userList button{
+	color: white;
+	background-color: black;
+	margin: .5em .1em;
+	padding: 0.10em .30em;
+}
+
+#userList .toggleBox{
+	border: 2px solid #333;
+	border-top: 0;
+}
+
+#userList .toggleBox p{
+	padding: .5em;
+	margin: 0;
+	cursor: default;
+	flex-grow: 1;
+}
+
+.flex{
+	display: flex;
+}
+
+.flexVertical{
+	flex-direction: column;
+}
+
+.container>*{
+	padding: 10em 5em;;
+}
+
+body{
+	background-color: #212121;
+}

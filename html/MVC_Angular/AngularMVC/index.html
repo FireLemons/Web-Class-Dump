@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<!-- Created by Professor Wergeles for CS4830 at the University of Missouri --> 
+<html ng-app="mvc">
+    <head>
+        <title>Angular MVC</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="app.css">
+        <script src="planetData.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+		<script>
+			 var app = angular
+				.module("mvc", [])
+				.controller("planetCtrl", function($scope){
+					$scope.isPlutoAdded = "";
+					$scope.data = planets;
+					$scope.totalPlanets = 8;
+
+					$scope.views = ["Select One", "List", "Table", "System", "All"];
+
+					$scope.selection = "Select One";
+
+					$scope.getTotalPlanets = function(){
+						return $scope.data.length;
+					}
+
+					$scope.addMyPlanet = function(button){
+						$scope.data.push({
+							name:"Pluto",
+							color:"gray",
+							radius:1186,
+							satellites:5
+						});
+					}
+				});
+
+			app.directive('removeOnClick', function() {
+				return {
+					link: function(scope, element, attrs) {
+						scope.remove = function() {
+							element[0].outerHTML = "";
+						};
+					}
+				}
+			});
+		</script>
+    </head>
+    <body>
+        <div ng-controller="planetCtrl">
+            <select ng-model="selection" ng-options="view for view in views"></select>
+
+			<button remove-on-click ng-click="addMyPlanet(this); remove();">Add Pluto</button>
+
+            <div ng-switch on="selection">
+				<h2>Total Planets: {{getTotalPlanets()}}</h2> 
+
+                <!-- List View -->
+                <div ng-switch-when="List">
+                    <ul>
+						<li ng-repeat="p in data">
+							{{p.name}} has a radius of {{p.radius}}km and {{p.satellites}} satellites
+						</li>
+                    </ul>
+                </div>
+                
+              	<!-- Table View -->
+                <div ng-switch-when="Table">
+                    <table class="table">
+                        <tr>
+                            <th>Name</th>
+                            <th>Color</th>
+                            <th>Radius</th>
+                            <th>Satellites</th>
+                        </tr>
+                        <tr ng-repeat="p in data">
+							<td>{{p.name}}</td>
+							<td>{{p.color}}</td>
+							<td>{{p.radius}}</td>
+							<td>{{p.satellites}}</td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <!-- System View -->
+                <div ng-switch-when="System">
+                    <div class="planet" ng-repeat="p in data">
+						<div style="width:{{p.radius / 69911 * 300}}px; height:{{p.radius / 69911 * 300}}px; background-color:{{p.color}};"></div>
+						<span>{{p.name}}</span>
+                    </div>
+                </div>
+            
+				<!--All views-->
+				<div ng-switch-when="All">
+					<ul>
+						<li ng-repeat="p in data">
+							{{p.name}} has a radius of {{p.radius}}km and {{p.satellites}} satellites
+						</li>
+                    </ul>
+					
+                    <table class="table">
+                        <tr>
+                            <th>Name</th>
+                            <th>Color</th>
+                            <th>Radius</th>
+                            <th>Satellites</th>
+                        </tr>
+                        <tr ng-repeat="p in data">
+							<td>{{p.name}}</td>
+							<td>{{p.color}}</td>
+							<td>{{p.radius}}</td>
+							<td>{{p.satellites}}</td>
+                        </tr>
+                    </table>
+
+					<div class="planet" ng-repeat="p in data">
+						<div style="width:{{p.radius / 69911 * 300}}px; height:{{p.radius / 69911 * 300}}px; background-color:{{p.color}};"></div>
+						<span>{{p.name}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

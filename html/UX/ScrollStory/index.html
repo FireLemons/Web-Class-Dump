@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<!-- Created by Professor Wergeles for CS4830 at the University of Missouri -->
+<html>
+    <head>
+        <title>Scroll Story</title>
+        <style>
+            body {
+                margin: 0;
+                height: 8000px;
+            }
+            div#stage {
+                overflow: hidden;
+                height: 500px;
+                position: fixed;
+            }
+            div.bubble {
+                position: fixed;
+                top: 150px;
+                left: 480px;
+                width: 400px;
+                padding: 0 10px;
+                background-color: rgba(240,240,240,0.7);
+                border: 1px solid #AAA;
+                border-radius: 10px;
+                box-shadow: 0 0 5px #AAA;
+                opacity: 0;
+                transition: opacity 2s;
+            }
+        
+        </style>
+        <script>
+            
+        </script>
+    </head>
+    <body>
+        <div id="stage">
+            <img id="background" src="utah.jpg">
+            <img id="dino" src="staurikosaurus.gif">
+            <div class="bubble">
+                <h2>Staurikosaurus</h2>
+                <p>Colbert (1970) described Staurikosaurus as a small and agile, bipedal predator. Staurikosaurus lived during the late-Carnian and early-Norian stage, of the late Triassic Period, 225 million years ago - which makes it one of the earliest dinosaurs known.</p>
+            </div>
+        </div>
+    </body>
+</html>
